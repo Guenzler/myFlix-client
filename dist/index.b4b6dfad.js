@@ -27321,76 +27321,25 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
+var _movieDataJs = require("../../movie-data.js");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            id: 1,
-            Title: "The Social Network",
-            Description: "A drama about the founding of Facebook",
-            Genre: {
-                Name: "Biography",
-                Description: "The biography genre focuses on depicting the life and experiences of real individuals, offering a dramatized portrayal of their achievements, challenges, and significant moments. These films aim to provide insight into the personal and historical aspects of noteworthy figures, offering audiences an informative and often inspiring narrative."
-            },
-            Director: {
-                Name: "David Fincher",
-                Bio: "David Fincher is a renowned filmmaker recognized for his expertise in directing psychological thrillers and dark dramas. With notable works such as 'Fight Club', 'Se7en', and 'The Social Network', Fincher has earned acclaim for his meticulous craftsmanship, innovative storytelling, and contributions to the suspense and mystery genres in cinema.",
-                Birthdate: "1962-08-28",
-                Deathdate: null
-            },
-            ImagePath: "https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/The_Social_Network_film_poster.png/220px-The_Social_Network_film_poster.png",
-            Featured: false
-        },
-        {
-            id: 2,
-            Title: "Lost in Translation",
-            Description: "Romantic drama set in Tokyo, exploring a unique connection between two strangers.",
-            Genre: {
-                Name: "Comedy",
-                Description: "Movies that aim to amuse and entertain"
-            },
-            Director: {
-                Name: "Sofia Coppola",
-                Bio: "Director known for Lost in Translation and The Virgin Suicides.",
-                Birthdate: "1971-05-14",
-                Deathdate: null
-            },
-            ImagePath: "https://upload.wikimedia.org/wikipedia/en/4/4c/Lost_in_Translation_poster.jpg",
-            Featured: false
-        },
-        {
-            id: 3,
-            Title: "The Shining",
-            Description: "'The Shining' is a psychological horror film directed by Stanley Kubrick, based on Stephen King's novel. It follows Jack Torrance, a writer and recovering alcoholic, who becomes the winter caretaker of the eerie Overlook Hotel with his family, leading to terrifying supernatural occurrences that unravel the fabric of his sanity.",
-            Genre: {
-                Name: "Horror",
-                Description: "Movies designed to evoke fear and suspense"
-            },
-            Director: {
-                Name: "Stanley Kubrick",
-                Bio: "Stanley Kubrick was a legendary filmmaker known for his diverse and groundbreaking contributions to cinema. With a career spanning decades, Kubrick directed iconic films such as '2001: A Space Odyssey', 'A Clockwork Orange', and 'The Shining', demonstrating a mastery of various genres and leaving an indelible mark on the art of filmmaking. He passed away on March 7, 1999, leaving behind a legacy of influential and thought-provoking films.",
-                Birthdate: "1928-07-26",
-                Deathdate: "1999-03-07"
-            },
-            ImagePath: "https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/The_Shining_%281980%29_U.K._release_poster_-_The_tide_of_terror_that_swept_America_IS_HERE.jpg/220px-The_Shining_%281980%29_U.K._release_poster_-_The_tide_of_terror_that_swept_America_IS_HERE.jpg",
-            Featured: false
-        }
-    ]);
+    const [movies, setMovies] = (0, _react.useState)((0, _movieDataJs.movieArray));
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 63,
+        lineNumber: 12,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 68,
+        lineNumber: 17,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27402,17 +27351,17 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 75,
+                lineNumber: 24,
                 columnNumber: 11
             }, undefined);
         })
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 72,
+        lineNumber: 21,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "ZvuCI0+X8EWtDR03qL7L3EQRW4o=");
+_s(MainView, "2KCJg6VH8RAhpHyvAjNKUKVUGaI=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27422,7 +27371,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../movie-data.js":"k0w3m"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27721,6 +27670,64 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["gjUm6","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"k0w3m":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "movieArray", ()=>movieArray);
+const movieArray = [
+    {
+        id: 1,
+        Title: "The Social Network",
+        Description: "A drama about the founding of Facebook",
+        Genre: {
+            Name: "Biography",
+            Description: "The biography genre focuses on depicting the life and experiences of real individuals, offering a dramatized portrayal of their achievements, challenges, and significant moments. These films aim to provide insight into the personal and historical aspects of noteworthy figures, offering audiences an informative and often inspiring narrative."
+        },
+        Director: {
+            Name: "David Fincher",
+            Bio: "David Fincher is a renowned filmmaker recognized for his expertise in directing psychological thrillers and dark dramas. With notable works such as 'Fight Club', 'Se7en', and 'The Social Network', Fincher has earned acclaim for his meticulous craftsmanship, innovative storytelling, and contributions to the suspense and mystery genres in cinema.",
+            Birthdate: "1962-08-28",
+            Deathdate: null
+        },
+        ImagePath: "https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/The_Social_Network_film_poster.png/220px-The_Social_Network_film_poster.png",
+        Featured: false
+    },
+    {
+        id: 2,
+        Title: "Lost in Translation",
+        Description: "Romantic drama set in Tokyo, exploring a unique connection between two strangers.",
+        Genre: {
+            Name: "Comedy",
+            Description: "Movies that aim to amuse and entertain"
+        },
+        Director: {
+            Name: "Sofia Coppola",
+            Bio: "Director known for Lost in Translation and The Virgin Suicides.",
+            Birthdate: "1971-05-14",
+            Deathdate: null
+        },
+        ImagePath: "https://upload.wikimedia.org/wikipedia/en/4/4c/Lost_in_Translation_poster.jpg",
+        Featured: false
+    },
+    {
+        id: 3,
+        Title: "The Shining",
+        Description: "'The Shining' is a psychological horror film directed by Stanley Kubrick, based on Stephen King's novel. It follows Jack Torrance, a writer and recovering alcoholic, who becomes the winter caretaker of the eerie Overlook Hotel with his family, leading to terrifying supernatural occurrences that unravel the fabric of his sanity.",
+        Genre: {
+            Name: "Horror",
+            Description: "Movies designed to evoke fear and suspense"
+        },
+        Director: {
+            Name: "Stanley Kubrick",
+            Bio: "Stanley Kubrick was a legendary filmmaker known for his diverse and groundbreaking contributions to cinema. With a career spanning decades, Kubrick directed iconic films such as '2001: A Space Odyssey', 'A Clockwork Orange', and 'The Shining', demonstrating a mastery of various genres and leaving an indelible mark on the art of filmmaking. He passed away on March 7, 1999, leaving behind a legacy of influential and thought-provoking films.",
+            Birthdate: "1928-07-26",
+            Deathdate: "1999-03-07"
+        },
+        ImagePath: "https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/The_Shining_%281980%29_U.K._release_poster_-_The_tide_of_terror_that_swept_America_IS_HERE.jpg/220px-The_Shining_%281980%29_U.K._release_poster_-_The_tide_of_terror_that_swept_America_IS_HERE.jpg",
+        Featured: false
+    }
+];
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["gjUm6","1xC6H","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
