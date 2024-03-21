@@ -10,6 +10,9 @@ npm install -g parcel
 Install React and React Dom  
 npm install --save react react-dom
 
+Install prop-types
+npm install --save prop-types
+
 ## Run the application
 
 parcel src/index.html  
