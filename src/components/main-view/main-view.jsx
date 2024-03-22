@@ -1,11 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-import { movieArray}  from "../../movie-data.js";
 
 export const MainView = () => {
-  const [movies, setMovies] = useState(movieArray);
+  const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+
+  useEffect(() => {
+    fetch("https://movie-app-2024-716106e34297.herokuapp.com/movies")
+      .then((response) => response.json())
+      .then((data) => {
+        const moviesFromApi = data.map((movie) => {
+          return {
+            id: movie._id,
+            title: movie.Title,
+            description: movie.Description,
+            imagePath: movie.ImagePath,
+            featured: movie.Featured,
+            genre: {
+              name: movie.Genre.Name,
+              description: movie.Genre.Description
+            },
+            director: {
+              name: movie.Director.Name,
+              bio: movie.Director.Bio,
+              birthdate: movie.Director.Birthdate,
+              deathdate: movie.Director.Deathdate
+            }
+          }
+        });
+        setMovies(moviesFromApi);
+      });
+  }, []);
 
   if (selectedMovie) {
     return (
@@ -23,7 +49,7 @@ export const MainView = () => {
         return (
           <MovieCard
             key={movie.id}
-            movie ={movie}
+            movie={movie}
             onMovieClick={(newSelectedMovie) => {
               setSelectedMovie(newSelectedMovie);
             }}
