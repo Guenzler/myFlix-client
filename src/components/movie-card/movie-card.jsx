@@ -25,8 +25,8 @@ MovieCard.propTypes = {
      director: PropTypes.shape({
       name: PropTypes.string,
       bio: PropTypes.string,
-      birthdate: PropTypes.instanceOf(Date),
-      deathdate: PropTypes.instanceOf(Date)
+      birthdate: PropTypes.string,
+      deathdate: PropTypes.string
      })
    }).isRequired,
    onMovieClick: PropTypes.func.isRequired
