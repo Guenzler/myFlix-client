@@ -1,0 +1,19 @@
+.card-body {
+    background-color: #000000;
+}
+
+.custom-card{
+    border: 2px solid var(--highlight-color);
+}
+
+.image-style {
+    height: 300px;
+    width: 100% !important;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid var(--highlight-color);
+}
+
+.card-title {
+    font-size: 2rem;
+}

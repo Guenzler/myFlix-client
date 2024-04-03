@@ -1,4 +1,6 @@
 import PropTypes from "prop-types";
+import "./styles.scss";
+import { Button } from "react-bootstrap";
 
 export const MovieView = ({ movie, onBackClick }) => {
 
@@ -11,27 +13,27 @@ export const MovieView = ({ movie, onBackClick }) => {
   }
 
   const displayBirthdate = dateToString(movie.director.birthdate);
-  const displayDeathdate = (movie.director.deathdate)?dateToString(movie.director.deathdate):"-";
+  const displayDeathdate = (movie.director.deathdate)?"Date of Death: " + dateToString(movie.director.deathdate):"";
  
   return (
-    <div>
+    <div className="bg-secondary py-3 px-4">
       <div>
-        <img src={movie.imagePath} />
+        <img src={movie.imagePath} className="viewImage"/>
       </div>
-      <h2>
+      <h1>
         <span>{movie.title}</span>
-      </h2>
+      </h1>
       <div>
         <span>{movie.description}</span>
       </div>
-      <h3>
+      <h3 className="pt-4">
         <span>Genre: </span>
         <span>{movie.genre.name}</span>
       </h3>
       <div>
         <span>{movie.genre.description}</span>
       </div>
-      <h3>
+      <h3 className="pt-4">
         <span>Director: </span>
         <span>{movie.director.name}</span>
       </h3>
@@ -45,11 +47,10 @@ export const MovieView = ({ movie, onBackClick }) => {
         <span>{displayBirthdate}</span>
       </div>
       <div>
-        <span>Date of Death: </span>
         <span>{displayDeathdate}</span>
       </div>
       <br></br>
-      <button onClick={onBackClick}>Back</button>
+      <Button onClick={onBackClick} variant="info">Back</Button>
     </div>
   );
 };

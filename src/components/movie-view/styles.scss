@@ -1,0 +1,20 @@
+.viewImage {
+    float: right;
+    margin-left: 3rem;
+    border-radius: 2px;
+    border: 1px solid var(--highlight-color);
+}
+@media all and (max-width: 768px) {
+    .viewImage {
+        width: 200px;
+    }
+}
+
+@media all and (max-width: 540px) {
+    .viewImage {
+        width: 100%;
+        float: none;
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+}

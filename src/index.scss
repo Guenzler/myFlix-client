@@ -1,5 +1,15 @@
-$color: rgb(38, 146, 56);
+$secondary: #000000;
+$info: #f0e489;
+$border-color: #f0e489;
+$body-bg-dark: #464545;
 
-.my-flix {
-  color: $color;
+@import '~bootstrap/scss/bootstrap.scss';
+
+:root {
+    --highlight-color: #f0e489;
 }
+h1, h2, h3, h4, h5 {
+    font-family: 'Teko', sans-serif;
+    font-weight: 400;
+    color: var(--highlight-color);
+  }
