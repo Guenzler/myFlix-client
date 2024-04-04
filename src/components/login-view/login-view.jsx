@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import "./styles.scss";
 
@@ -46,7 +47,6 @@ export const LoginView = ({ onLoggedIn }) => {
     return (
 
         <Form onSubmit={handleSubmit} className="bg-secondary py-3 px-4">
-            <h1>My Movie App</h1>
             <h3>Login:</h3>
             <Form.Group controlId="formUsername">
                 <Form.Label>Username:</Form.Label>
@@ -74,6 +74,8 @@ export const LoginView = ({ onLoggedIn }) => {
             <Button variant="info" type="submit">
                 Submit
             </Button>
+           
+            <p className="linkToRegister"><Link to="/signup" >or register</Link></p>
         </Form>
     );
 };
