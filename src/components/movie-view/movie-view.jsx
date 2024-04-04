@@ -1,8 +1,13 @@
 import PropTypes from "prop-types";
-import "./styles.scss";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import "./styles.scss";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies }) => {
+
+  const { movieId } = useParams();
+  const movie = movies.find((b) => b.id === movieId);
 
   function dateToString(date){
     let myDate = new Date(date);
@@ -50,7 +55,9 @@ export const MovieView = ({ movie, onBackClick }) => {
         <span>{displayDeathdate}</span>
       </div>
       <br></br>
-      <Button onClick={onBackClick} variant="info">Back</Button>
+      <Link to={`/`}>
+      <Button variant="info">Back</Button>
+      </Link>
     </div>
   );
 };
@@ -72,6 +79,5 @@ MovieView.propTypes = {
       birthdate: PropTypes.string,
       deathdate: PropTypes.string
     })
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired
+  }).isRequired
 };
