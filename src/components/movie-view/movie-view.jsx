@@ -1,29 +1,37 @@
+import React from 'react';
 import PropTypes from "prop-types";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { useNavigate } from 'react-router-dom';
 import "./styles.scss";
 
 export const MovieView = ({ movies }) => {
 
+  //define function that navigates back in history for back button
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(-1); // Navigate back in history
+  };
+
+  //read ID from URL endpoint and find the right movie
   const { movieId } = useParams();
   const movie = movies.find((b) => b.id === movieId);
 
-  function dateToString(date){
+  //change the date from MongoDB date field into string to output on page
+  function dateToString(date) {
     let myDate = new Date(date);
     let year = myDate.getFullYear();
     let month = ('0' + (myDate.getMonth() + 1)).slice(-2);
     let day = ('0' + myDate.getDate()).slice(-2);
-    return year + '-' + month + '-' + day;
+    return day + '-' + month + '-' + year;
   }
-
   const displayBirthdate = dateToString(movie.director.birthdate);
-  const displayDeathdate = (movie.director.deathdate)?"Date of Death: " + dateToString(movie.director.deathdate):"";
- 
+  const displayDeathdate = (movie.director.deathdate) ? "Date of Death: " + dateToString(movie.director.deathdate) : "";
+
   return (
     <div className="bg-secondary py-3 px-4">
       <div>
-        <img src={movie.imagePath} className="viewImage"/>
+        <img src={movie.imagePath} className="viewImage" />
       </div>
       <h1>
         <span>{movie.title}</span>
@@ -55,29 +63,14 @@ export const MovieView = ({ movies }) => {
         <span>{displayDeathdate}</span>
       </div>
       <br></br>
-      <Link to={`/`}>
-      <Button variant="info">Back</Button>
-      </Link>
+
+      <Button variant="info" onClick={handleClick}>Back</Button>
+
     </div>
   );
 };
 
 
 MovieView.propTypes = {
-  movie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string,
-    imagePath: PropTypes.string,
-    featured: PropTypes.bool,
-    genre: PropTypes.shape({
-      name: PropTypes.string,
-      description: PropTypes.string
-    }),
-    director: PropTypes.shape({
-      name: PropTypes.string,
-      bio: PropTypes.string,
-      birthdate: PropTypes.string,
-      deathdate: PropTypes.string
-    })
-  }).isRequired
+  movies: PropTypes.array.isRequired
 };
