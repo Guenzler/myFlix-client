@@ -13204,26 +13204,6 @@ body {
   padding-top: 80px;
 }
 
-.card-body {
-  background-color: #000;
-}
-
-.custom-card {
-  border: 2px solid var(--highlight-color);
-}
-
-.image-style {
-  object-fit: cover;
-  object-position: center;
-  border: 1px solid var(--highlight-color);
-  height: 300px;
-  width: 100% !important;
-}
-
-.card-title {
-  font-size: 2rem;
-}
-
 .viewImage {
   float: right;
   border: 1px solid var(--highlight-color);
@@ -13282,5 +13262,25 @@ body {
   color: var(--highlight-color);
   font-size: 1.1rem;
   font-weight: bold;
+}
+
+.card-body {
+  background-color: #000;
+}
+
+.custom-card {
+  border: 2px solid var(--highlight-color);
+}
+
+.image-style {
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid var(--highlight-color);
+  height: 300px;
+  width: 100% !important;
+}
+
+.card-title {
+  font-size: 2rem;
 }
 /*# sourceMappingURL=index.2212206d.css.map */
