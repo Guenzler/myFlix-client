@@ -75,7 +75,7 @@ export const LoginView = ({ onLoggedIn }) => {
             <Button variant="info" type="submit">
                 Submit
             </Button>
-           
+
             <p className="linkToRegister"><Link to="/signup" >or register</Link></p>
         </Form>
     );
