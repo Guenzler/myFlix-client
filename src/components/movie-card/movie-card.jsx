@@ -93,8 +93,6 @@ export const MovieCard = ({ movie, updateUser }) => {
     setDelMovie(movie);
   };
 
-
-
   return (
     <Card className="h-100 custom-card">
       <Card.Img variant="top" src={movie.imagePath} className="image-style" />

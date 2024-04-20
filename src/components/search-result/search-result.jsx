@@ -7,13 +7,13 @@ export const SearchResult = ({ numberOfMovies, resetSearch }) => {
         <Card className="custom-card">
             <Card.Body>
                 <Card.Text>
-                    {(numberOfMovies===1)?"Your search term was found in one movie":`Your search term was found in ${numberOfMovies} movies`}</Card.Text>
-                <Button 
-                variant="info"
-                onClick={resetSearch}
+                    {(numberOfMovies === 1) ? "Your search term was found in one movie" : `Your search term was found in ${numberOfMovies} movies`}</Card.Text>
+                <Button
+                    variant="info"
+                    onClick={resetSearch}
                 >
                     Reset search
-                    </Button>
+                </Button>
             </Card.Body>
         </Card>
     );
@@ -22,4 +22,4 @@ export const SearchResult = ({ numberOfMovies, resetSearch }) => {
 SearchResult.propTypes = {
     numberOfMovies: PropTypes.number,
     resetSearch: PropTypes.func
-  }
+}

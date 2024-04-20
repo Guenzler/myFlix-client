@@ -60,37 +60,37 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
                   Profile
                 </Nav.Link>
                 <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
-                
+
               </>
             )}
           </Nav>
           {user && (
-          <form className="d-flex">
-                  <input
-                    className="form-control me-2"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                  />
-                  <Button
-                    variant="info"
-                    type="button"
-                    onClick={handleSearchSubmit}
-                  >
-                    Search
-                  </Button>
-                  <Button
-                    variant="outline-info"
-                    type="button"
-                    className="ms-2"
-                    onClick={resetInputField}
-                  >
-                    Reset
-                  </Button>
-                </form>
-                 )}
+            <form className="d-flex">
+              <input
+                className="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
+              <Button
+                variant="info"
+                type="button"
+                onClick={handleSearchSubmit}
+              >
+                Search
+              </Button>
+              <Button
+                variant="outline-info"
+                type="button"
+                className="ms-2"
+                onClick={resetInputField}
+              >
+                Reset
+              </Button>
+            </form>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>

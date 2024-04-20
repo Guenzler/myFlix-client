@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 import PropTypes from "prop-types";
 
 export const ProfileView = ({ user, token, movies, updateUser, updateToken }) => {
-    
+
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         // Format the date to YYYY-MM-DD which is the required format for input type="date"

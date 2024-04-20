@@ -42336,7 +42336,7 @@ const NavigationBar = ({ user, onLoggedOut, onSearch })=>{
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                     lineNumber: 69,
-                                    columnNumber: 19
+                                    columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                     variant: "info",
@@ -42346,7 +42346,7 @@ const NavigationBar = ({ user, onLoggedOut, onSearch })=>{
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                     lineNumber: 77,
-                                    columnNumber: 19
+                                    columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                     variant: "outline-info",
@@ -42357,13 +42357,13 @@ const NavigationBar = ({ user, onLoggedOut, onSearch })=>{
                                 }, void 0, false, {
                                     fileName: "src/components/navigation-bar/navigation-bar.jsx",
                                     lineNumber: 84,
-                                    columnNumber: 19
+                                    columnNumber: 15
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/navigation-bar/navigation-bar.jsx",
                             lineNumber: 68,
-                            columnNumber: 11
+                            columnNumber: 13
                         }, undefined)
                     ]
                 }, void 0, true, {

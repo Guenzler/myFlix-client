@@ -33,7 +33,7 @@ function searchMovies(searchTerm, movies) {
     );
   });
   // Return an array of ids of the filtered movies
-  if (filteredMovies.length===0){alert('no movies found');}
+  if (filteredMovies.length === 0) { alert('no movies found'); }
   return filteredMovies;
 }
 
@@ -154,12 +154,12 @@ export const MainView = () => {
                 ) : searchResults && searchResults.length > 0 ? (
                   <>
                     <Col key="search" lg={3} md={4} sm={6} className="mb-5">
-                      <SearchResult 
-                      numberOfMovies={searchResults.length} 
-                      resetSearch={() => {
-                        setSearchResults([]);
-                      }
-                    }
+                      <SearchResult
+                        numberOfMovies={searchResults.length}
+                        resetSearch={() => {
+                          setSearchResults([]);
+                        }
+                        }
                       />
                     </Col>
                     {searchResults.map((movie) => {
