@@ -97,7 +97,7 @@ export const MovieCard = ({ movie, updateUser }) => {
     <Card className="h-100 custom-card">
       <Card.Img variant="top" src={movie.imagePath} className="image-style" />
       <Card.Body>
-        <Card.Title>{movie.title}</Card.Title>
+        <Card.Title><span className="moviecardtitle">{movie.title}</span></Card.Title>
         <Card.Text>Director {movie.director.name}</Card.Text>
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
           <Button variant="info">Open</Button>

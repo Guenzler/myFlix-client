@@ -13204,6 +13204,10 @@ body {
   padding-top: 80px;
 }
 
+.moviecardtitle {
+  font-size: 2rem;
+}
+
 .viewImage {
   float: right;
   border: 1px solid var(--highlight-color);
@@ -13250,7 +13254,7 @@ body {
   background-color: #000;
 }
 
-.navbar-brand {
+.app-icon {
   color: var(--highlight-color);
   font-family: Teko, sans-serif;
   font-size: 2.25rem;
@@ -13258,7 +13262,7 @@ body {
   line-height: 1;
 }
 
-.nav-link {
+.navigation {
   color: var(--highlight-color);
   font-size: 1.1rem;
   font-weight: bold;

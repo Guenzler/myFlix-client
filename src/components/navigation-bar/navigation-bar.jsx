@@ -36,7 +36,7 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
     <Navbar expand="lg" className="nav-colors" fixed="top">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          Movie App
+          <span className="app-icon">Movie App</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -44,22 +44,24 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
             {!user && (
               <>
                 <Nav.Link as={Link} to="/login">
-                  Login
+                  <span className="navigation">Login</span>
                 </Nav.Link>
                 <Nav.Link as={Link} to="/signup">
-                  Signup
+                  <span className="navigation">Signup</span>
                 </Nav.Link>
               </>
             )}
             {user && (
               <>
                 <Nav.Link as={Link} to="/" onClick={resetSearchTerm}>
-                  Movies
+                  <span className="navigation">Movies</span>
                 </Nav.Link>
                 <Nav.Link as={Link} to="/profile" onClick={resetSearchTerm}>
-                  Profile
+                  <span className="navigation">Profile</span>
                 </Nav.Link>
-                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
+                <Nav.Link onClick={onLoggedOut}>
+                  <span className="navigation">Logout</span>
+                </Nav.Link>
 
               </>
             )}
