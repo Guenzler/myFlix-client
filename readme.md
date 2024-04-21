@@ -1,7 +1,8 @@
 # A Movie App
 
 ## Project description
-This project is the client-side component of a MERN application that will provide users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies.
+This project is the client-side component of a MERN application that will provide users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies.  
+The project is currently online at https://movie-app-483832.netlify.app
 
 ## Key Features
 - allow user to register and to log in  
