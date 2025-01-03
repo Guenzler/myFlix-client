@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import "./styles.scss";
 import PropTypes from "prop-types";
+import Loader from "../loader/loader";
 
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [isSendingLoginData, setIsSendingLoginData] = useState(false);
 
     const handleSubmit = (event) => {
         // this prevents the default behavior of the form which is to reload the entire page
@@ -18,6 +20,8 @@ export const LoginView = ({ onLoggedIn }) => {
             username: username,
             password: password
         };
+
+        setIsSendingLoginData(true);
 
         fetch("https://movie-app-2024-716106e34297.herokuapp.com/login", {
             method: "post",
@@ -39,9 +43,11 @@ export const LoginView = ({ onLoggedIn }) => {
                         document.getElementById('ermessg').innerText = 'something went wrong';
                     }
                 }
+                setIsSendingLoginData(false);
             })
             .catch((e) => {
                 alert("Some error occured");
+                setIsSendingLoginData(false);
             });
     };
 
@@ -49,6 +55,8 @@ export const LoginView = ({ onLoggedIn }) => {
 
         <Form onSubmit={handleSubmit} className="bg-secondary py-3 px-4">
             <h3>Login:</h3>
+             {/* Loader: Show this when loading */}
+             {isSendingLoginData && ( <Loader /> )} 
             <Form.Group controlId="formUsername">
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
