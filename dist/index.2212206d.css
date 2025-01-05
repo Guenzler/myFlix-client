@@ -1,3 +1,7 @@
+.right-align {
+  float: right;
+}
+
 .moviecardtitle {
   font-size: 2rem;
 }

@@ -27601,7 +27601,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","../profile-view/profile-view":"2vVqf","../navigation-bar/navigation-bar":"bsPVM","../search-result/search-result":"ittZE","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../loader/loader":"aoxeG"}],"bwuIu":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","../profile-view/profile-view":"2vVqf","../navigation-bar/navigation-bar":"bsPVM","../search-result/search-result":"ittZE","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../loader/loader":"aoxeG","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27617,6 +27617,10 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _react = require("react");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
+var _heartYellowFullPng = require("../../assets/img/heart-yellow-full.png");
+var _heartYellowFullPngDefault = parcelHelpers.interopDefault(_heartYellowFullPng);
+var _heartYellowOutlinePng = require("../../assets/img/heart-yellow-outline.png");
+var _heartYellowOutlinePngDefault = parcelHelpers.interopDefault(_heartYellowOutlinePng);
 var _stylesScss = require("./styles.scss");
 var _s = $RefreshSig$();
 const MovieCard = ({ movie, updateUser })=>{
@@ -27624,68 +27628,51 @@ const MovieCard = ({ movie, updateUser })=>{
     const storedToken = localStorage.getItem("token");
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
-    const [addMovie, setAddMovie] = (0, _react.useState)("");
-    const [delMovie, setDelMovie] = (0, _react.useState)("");
-    let isFavorite;
-    if (user.favoriteMovies.indexOf(movie.id) > -1) isFavorite = true;
-    else isFavorite = false;
-    (0, _react.useEffect)(()=>{
-        const addToFavorites = ()=>{
-            fetch(`https://movie-app-2024-716106e34297.herokuapp.com/users/${user.username}/${movie.id}`, {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${storedToken}`
-                }
-            }).then((response)=>{
-                if (!response.ok) alert("Failed to add movie to favorites.");
-                else {
-                    alert("Movie added to favorites successfully!");
-                    return response.json();
-                }
-            }).then((updatedUser)=>{
-                if (updatedUser.username) {
-                    localStorage.setItem("user", JSON.stringify(updatedUser));
-                    setUser(updatedUser);
-                    updateUser(updatedUser);
-                }
-            }).catch((error)=>{
-                console.error(error);
-            });
-        };
-        const removeFromFavorites = ()=>{
-            fetch(`https://movie-app-2024-716106e34297.herokuapp.com/users/${user.username}/${movie.id}`, {
-                method: "DELETE",
-                headers: {
-                    Authorization: `Bearer ${storedToken}`
-                }
-            }).then((response)=>{
-                if (!response.ok) alert("Failed to remove movie from favorites.");
-                else {
-                    alert("Movie removed from favorites successfully!");
-                    return response.json();
-                }
-            }).then((updatedUser)=>{
-                if (updatedUser.username) {
-                    localStorage.setItem("user", JSON.stringify(updatedUser));
-                    setUser(updatedUser);
-                    updateUser(updatedUser);
-                }
-            }).catch((error)=>{
-                console.error(error);
-            });
-        };
-        if (addMovie) addToFavorites();
-        if (delMovie) removeFromFavorites();
-    }, [
-        addMovie,
-        delMovie,
-        storedToken
-    ]);
+    // Determine if the movie is in the user's favorites
+    const isFavorite = user.favoriteMovies.includes(movie.id);
+    // Add to favorites handler
     const handleAddToFavorites = ()=>{
-        setAddMovie(movie);
+        fetch(`https://movie-app-2024-716106e34297.herokuapp.com/users/${user.username}/${movie.id}`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${storedToken}`
+            }
+        }).then((response)=>{
+            if (!response.ok) {
+                alert("Failed to add movie to favorites.");
+                return;
+            }
+            alert("Movie added to favorites successfully!");
+            return response.json();
+        }).then((updatedUser)=>{
+            if (updatedUser?.username) {
+                localStorage.setItem("user", JSON.stringify(updatedUser));
+                setUser(updatedUser);
+                updateUser(updatedUser);
+            }
+        }).catch((error)=>console.error(error));
     };
+    // Remove from favorites handler
     const handleRemoveFromFavorites = ()=>{
-        setDelMovie(movie);
+        fetch(`https://movie-app-2024-716106e34297.herokuapp.com/users/${user.username}/${movie.id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${storedToken}`
+            }
+        }).then((response)=>{
+            if (!response.ok) {
+                alert("Failed to remove movie from favorites.");
+                return;
+            }
+            alert("Movie removed from favorites successfully!");
+            return response.json();
+        }).then((updatedUser)=>{
+            if (updatedUser?.username) {
+                localStorage.setItem("user", JSON.stringify(updatedUser));
+                setUser(updatedUser);
+                updateUser(updatedUser);
+            }
+        }).catch((error)=>console.error(error));
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         className: "h-100 custom-card",
@@ -27696,7 +27683,7 @@ const MovieCard = ({ movie, updateUser })=>{
                 className: "image-style"
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 98,
+                lineNumber: 70,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -27707,12 +27694,12 @@ const MovieCard = ({ movie, updateUser })=>{
                             children: movie.title
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 100,
+                            lineNumber: 72,
                             columnNumber: 21
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 100,
+                        lineNumber: 72,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
@@ -27722,7 +27709,7 @@ const MovieCard = ({ movie, updateUser })=>{
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 101,
+                        lineNumber: 73,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -27732,54 +27719,82 @@ const MovieCard = ({ movie, updateUser })=>{
                             children: "Open"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 103,
+                            lineNumber: 75,
                             columnNumber: 11
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 102,
+                        lineNumber: 74,
                         columnNumber: 9
                     }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "mt-2",
-                        children: isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            variant: "outline-info",
-                            size: "sm",
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        className: "mt-2 right-align",
+                        children: isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                             onClick: handleRemoveFromFavorites,
-                            children: "Remove from favorites"
+                            style: {
+                                background: 'none',
+                                border: 'none',
+                                padding: 0,
+                                cursor: 'pointer'
+                            },
+                            "aria-label": "Remove from favorites",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                src: (0, _heartYellowFullPngDefault.default),
+                                width: "30px",
+                                height: "30px",
+                                alt: "Full heart icon"
+                            }, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 88,
+                                columnNumber: 14
+                            }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 107,
+                            lineNumber: 79,
                             columnNumber: 13
-                        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            variant: "outline-info",
-                            size: "sm",
+                        }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                             onClick: handleAddToFavorites,
-                            children: "Add to favorites"
+                            style: {
+                                background: 'none',
+                                border: 'none',
+                                padding: 0,
+                                cursor: 'pointer'
+                            },
+                            "aria-label": "Add to favorites",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                src: (0, _heartYellowOutlinePngDefault.default),
+                                width: "30px",
+                                height: "30px",
+                                alt: "Outlined heart icon"
+                            }, void 0, false, {
+                                fileName: "src/components/movie-card/movie-card.jsx",
+                                lineNumber: 101,
+                                columnNumber: 15
+                            }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 109,
+                            lineNumber: 91,
                             columnNumber: 13
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 105,
+                        lineNumber: 77,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 99,
+                lineNumber: 71,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 97,
+        lineNumber: 69,
         columnNumber: 5
     }, undefined);
 };
-_s(MovieCard, "RaNHaxFRE3cXIqQUdXXTQtkHfB8=");
+_s(MovieCard, "drE/u6ltTGhNbJvlkllR9OyWTvc=");
 _c = MovieCard;
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
@@ -27808,7 +27823,7 @@ $RefreshReg$(_c, "MovieCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","./styles.scss":"jf7e7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7wKI2":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","./styles.scss":"jf7e7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../assets/img/heart-yellow-full.png":"jzJvD","../../assets/img/heart-yellow-outline.png":"8G0bn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7wKI2":[function(require,module,exports,__globalThis) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -42196,7 +42211,48 @@ function persistAppliedTransitions(_window, transitions) {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jf7e7":[function() {},{}],"km3Ru":[function(require,module,exports,__globalThis) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jf7e7":[function() {},{}],"jzJvD":[function(require,module,exports,__globalThis) {
+module.exports = require("b747e2f2cf11c688").getBundleURL('byUka') + "heart-yellow-full.b0dded35.png" + "?" + Date.now();
+
+},{"b747e2f2cf11c688":"lgJ39"}],"lgJ39":[function(require,module,exports,__globalThis) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ('' + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return '/';
+}
+function getBaseURL(url) {
+    return ('' + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+// TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ('' + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error('Origin not found');
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"8G0bn":[function(require,module,exports,__globalThis) {
+module.exports = require("dd810d42db60e2dc").getBundleURL('byUka') + "heart-yellow-outline.02448189.png" + "?" + Date.now();
+
+},{"dd810d42db60e2dc":"lgJ39"}],"km3Ru":[function(require,module,exports,__globalThis) {
 "use strict";
 var Refresh = require("7422ead32dcc1e6b");
 var { version } = require("630b62916b1ae0e7");
@@ -42762,7 +42818,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Button":"aPzUt","react-router-dom":"9xmpe","react-bootstrap/Form":"iBZ80","./styles.scss":"8PPwb","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../loader/loader":"aoxeG"}],"8PPwb":[function() {},{}],"aoxeG":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Button":"aPzUt","react-router-dom":"9xmpe","react-bootstrap/Form":"iBZ80","./styles.scss":"8PPwb","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../loader/loader":"aoxeG","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"8PPwb":[function() {},{}],"aoxeG":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$7b1e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -43041,7 +43097,7 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","./styles.scss":"01GSb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../loader/loader":"aoxeG"}],"01GSb":[function() {},{}],"2vVqf":[function(require,module,exports,__globalThis) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","react-bootstrap/Button":"aPzUt","react-bootstrap/Form":"iBZ80","./styles.scss":"01GSb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../loader/loader":"aoxeG","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"01GSb":[function() {},{}],"2vVqf":[function(require,module,exports,__globalThis) {
 var $parcel$ReactRefreshHelpers$3c12 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
