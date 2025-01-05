@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Loader from "../loader/loader";
 import "./styles.scss";
 
 export const SignupView = () => {
@@ -10,11 +11,13 @@ export const SignupView = () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [birthdate, setBirthdate] = useState("");
+    const [isLoadingData, setIsLoadingData] = useState(false);
 
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setIsLoadingData(true);
 
         const data = {
             username: username,
@@ -30,8 +33,9 @@ export const SignupView = () => {
             }
         }).then(response => {
             if (response.ok) {
-                alert("Signup successful");
+                alert("Signup successful, please login now");
                 navigate("/");
+                setIsLoadingData(false); // Stop loading
             } else {
                 // Check response for error messages
                 // Check if response is of type application/json
@@ -67,9 +71,15 @@ export const SignupView = () => {
                 } else {
                     document.getElementById('output').innerText = "something went wrong";
                 }
+                setIsLoadingData(false); // Stop loading after processing response
             })
             .catch(error => {
                 console.error('Error:', error);
+                document.getElementById("output").innerText = "An error occurred";
+                setIsLoadingData(false); // Stop loading on error
+            })
+            .finally(() => {
+                setIsLoadingData(false); // Always stop loading, no matter what happens
             });
     };
 
@@ -77,8 +87,10 @@ export const SignupView = () => {
         <Form onSubmit={handleSubmit} className="bg-secondary py-3 px-4">
             <h3>Registration:</h3>
             <p>Please fill out all fields marked with *</p>
+            {/* Loader: Show this when loading */}
+            {isLoadingData && ( <Loader /> )} 
             <Form.Group controlId="formSignupUsername">
-                <Form.Label>Username:</Form.Label>
+                <Form.Label>Username*:</Form.Label>
                 <Form.Control
                     type="text"
                     value={username}

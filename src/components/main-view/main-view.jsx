@@ -6,6 +6,7 @@ import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { SearchResult } from "../search-result/search-result";
+import Loader from "../loader/loader";
 import Row from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -44,6 +45,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [searchResults, setSearchResults] = useState([]);
+  const [isDataLoading, setIsDataLoading] = useState(false);
 
   const onSearch = (searchTerm) => {
     const results = searchMovies(searchTerm, movies);
@@ -56,6 +58,7 @@ export const MainView = () => {
       return;
     }
 
+    setIsDataLoading(true);
     fetch("https://movie-app-2024-716106e34297.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -81,6 +84,12 @@ export const MainView = () => {
           }
         });
         setMovies(moviesFromApi);
+      })
+      .catch((error) => {
+        console.error("Error fetching movies:", error);
+      })
+      .finally(() => {
+        setIsDataLoading(false); // Stop to show loader after the fetch completes
       });
   }, [token]);
 
@@ -149,7 +158,10 @@ export const MainView = () => {
               <>
                 {!user ? (
                   <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
+                ) : isDataLoading ? ( // Show loader while data is loading
+                  <Col><Loader /></Col>
+                )
+                : movies.length === 0 ? (
                   <Col>The list is empty!</Col>
                 ) : searchResults && searchResults.length > 0 ? (
                   <>

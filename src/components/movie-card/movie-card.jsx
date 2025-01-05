@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import fullHeart from "../../assets/img/heart-yellow-full.png";
+import outlineHeart from "../../assets/img/heart-yellow-outline.png";
 import "./styles.scss";
 
 export const MovieCard = ({ movie, updateUser }) => {
@@ -9,88 +11,58 @@ export const MovieCard = ({ movie, updateUser }) => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const [user, setUser] = useState(storedUser ? storedUser : null);
 
-  const [addMovie, setAddMovie] = useState("");
-  const [delMovie, setDelMovie] = useState("");
+  // Determine if the movie is in the user's favorites
+  const isFavorite = user.favoriteMovies.includes(movie.id);
 
-  let isFavorite;
-  if (user.favoriteMovies.indexOf(movie.id) > -1) {
-    isFavorite = true
-  } else {
-    isFavorite = false
-  };
-
-  useEffect(() => {
-    const addToFavorites = () => {
-      fetch(
-        `https://movie-app-2024-716106e34297.herokuapp.com/users/${user.username}/${movie.id}`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${storedToken}`
-          },
-        }
-      )
-        .then((response) => {
-          if (!response.ok) {
-            alert("Failed to add movie to favorites.");
-          } else {
-            alert("Movie added to favorites successfully!");
-            return response.json();
-          }
-        })
-        .then((updatedUser) => {
-          if (updatedUser.username) {
-            localStorage.setItem("user", JSON.stringify(updatedUser));
-            setUser(updatedUser);
-            updateUser(updatedUser);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-    const removeFromFavorites = () => {
-      fetch(
-        `https://movie-app-2024-716106e34297.herokuapp.com/users/${user.username}/${movie.id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${storedToken}`
-          },
-        }
-      )
-        .then((response) => {
-          if (!response.ok) {
-            alert("Failed to remove movie from favorites.");
-          } else {
-            alert("Movie removed from favorites successfully!");
-            return response.json();
-          }
-        })
-        .then((updatedUser) => {
-          if (updatedUser.username) {
-            localStorage.setItem("user", JSON.stringify(updatedUser));
-            setUser(updatedUser);
-            updateUser(updatedUser);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-    if (addMovie) {
-      addToFavorites();
-    }
-    if (delMovie) {
-      removeFromFavorites();
-    }
-  }, [addMovie, delMovie, storedToken]);
-
+  // Add to favorites handler
   const handleAddToFavorites = () => {
-    setAddMovie(movie);
+    fetch(`https://movie-app-2024-716106e34297.herokuapp.com/users/${user.username}/${movie.id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${storedToken}`
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          alert("Failed to add movie to favorites.");
+          return;
+        }
+        alert("Movie added to favorites successfully!");
+        return response.json();
+      })
+      .then((updatedUser) => {
+        if (updatedUser?.username) {
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+          setUser(updatedUser);
+          updateUser(updatedUser);
+        }
+      })
+      .catch((error) => console.error(error));
   };
-  const handleRemoveFromFavorites = () => {
-    setDelMovie(movie);
+   // Remove from favorites handler
+   const handleRemoveFromFavorites = () => {
+    fetch(`https://movie-app-2024-716106e34297.herokuapp.com/users/${user.username}/${movie.id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${storedToken}`
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          alert("Failed to remove movie from favorites.");
+          return;
+        }
+        alert("Movie removed from favorites successfully!");
+        return response.json();
+      })
+      .then((updatedUser) => {
+        if (updatedUser?.username) {
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+          setUser(updatedUser);
+          updateUser(updatedUser);
+        }
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -102,13 +74,35 @@ export const MovieCard = ({ movie, updateUser }) => {
         <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
           <Button variant="info">Open</Button>
         </Link>
-        <div className="mt-2">
+        <span className="mt-2 right-align">
           {isFavorite ? (
-            <Button variant="outline-info" size='sm' onClick={handleRemoveFromFavorites} >Remove from favorites</Button>
+            <button
+              onClick={handleRemoveFromFavorites}
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: 0,
+                cursor: 'pointer',
+              }}
+              aria-label="Remove from favorites"
+            ><img src={fullHeart} width="30px" height="30px" alt="Full heart icon" />
+            </button>
           ) : (
-            <Button variant="outline-info" size='sm' onClick={handleAddToFavorites}>Add to favorites</Button>
+            <button
+              onClick={handleAddToFavorites}
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: 0,
+                cursor: 'pointer',
+              }}
+              aria-label="Add to favorites"
+            >
+              <img src={outlineHeart} width="30px" height="30px" alt="Outlined heart icon" />
+            </button>
           )}
-        </div>
+
+        </span>
       </Card.Body>
     </Card>
   );
